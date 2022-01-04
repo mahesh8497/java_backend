@@ -1,17 +1,17 @@
 public class BasicVarible {
 
-        int a=10;
-        char ch='A';
-        boolean b=false;
-        long l=1234567l;
-        short s=11;
-        byte w=12;
-        double d=12.12;
-        float f=1.1f;
-        String ss="s";
-        public void Basic()
-        {
 
+        public void testVariable()
+        {
+            int age=10;
+            char ch='a';
+            boolean isManager=false;
+            long lng=1234567L;
+            short sh=11;
+            byte byt=12;
+            double annualSal=56.56;
+            float sal=20.6f;
+            String nm="android";
         }
 
 
