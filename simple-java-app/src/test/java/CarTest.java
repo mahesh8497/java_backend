@@ -13,7 +13,7 @@ public class CarTest {
     @DisplayName("Car Valid Object")
     @Test
     void testCarValidObject() {
-        Car car = new Car(); // you created object here
+        Car car = new Car();
         Assertions.assertNotNull(car);
     }
 
