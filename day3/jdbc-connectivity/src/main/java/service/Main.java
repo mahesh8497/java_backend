@@ -15,14 +15,19 @@ public class Main {
             DbService service = new DbService(connectivity.getConnection());
 //            int cnt = service.create(
 //                    7,
-//                    "asd",
+//                    "klm",
 //                    Date.valueOf(LocalDate.now()),
 //                    true
 //            );
 //            if(cnt > 0) {
 //                System.out.println("Employee Created Successfully");
 //            }
-            service.findEmployeeName("abr");
+
+//            service.find();
+
+//            service.findEmployeeByName("abc");
+
+            service.txnDemo(12, "kol", Date.valueOf(LocalDate.now()), true, 3);
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
