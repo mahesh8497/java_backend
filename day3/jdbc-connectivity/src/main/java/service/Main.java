@@ -14,8 +14,8 @@ public class Main {
 
             DbService service = new DbService(connectivity.getConnection());
             int cnt = service.create(
-                    2,
-                    "pqr",
+                    6,
+                    "abr",
                     Date.valueOf(LocalDate.now()),
                     true
             );
