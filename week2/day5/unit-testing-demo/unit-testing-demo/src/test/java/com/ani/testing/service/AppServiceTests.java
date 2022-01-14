@@ -19,9 +19,14 @@ public class AppServiceTests {
 
     @Mock
     private AppRepository repository;
+    //    @MockBean -> they will create dependency tree
+//    @Mock ->  they will create dependency tree
 
     @InjectMocks
     private AppService service;
+    // service class is calling method inside repository ?
+    // how to check this method has happened or not ?
+    // for that you have verify methods from Mockito.s
 
     @Test
     public void testDateBetween() {
