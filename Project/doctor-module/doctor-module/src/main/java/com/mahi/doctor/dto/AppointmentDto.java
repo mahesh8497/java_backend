@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -15,8 +17,11 @@ import java.time.LocalDate;
 public class AppointmentDto {
 
 private Long id;
-    private String type;
-    private LocalDate placed;
+@NotNull
+@NotBlank
+
+    private String appointmentStatus;
+    private String placed;
     private LocalDate appointmentDate;
     private String doctorName;
 }

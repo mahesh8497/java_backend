@@ -21,7 +21,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     public AppointmentDto createAppointment(AppointmentDto dto) {
 
         var abc = new Appointment();
-        abc.setType(dto.getType());
+        abc.setAppointmentStatus(dto.getAppointmentStatus());
         abc.setId(dto.getId());
         abc.setAppointmentDate(dto.getAppointmentDate());
         abc.setPlaced(dto.getPlaced());
@@ -39,34 +39,34 @@ public class AppointmentServiceImpl implements AppointmentService {
         Appointment baNew = new Appointment();
         baNew.setAppointmentDate(newAppointment);
         baNew.setId(op.getId());
-        baNew.setType(op.getType());
+        baNew.setAppointmentStatus(op.getAppointmentStatus());
         baNew.setPlaced(op.getPlaced());
         baNew.setDoctorName(op.getDoctorName());
         repository.save(baNew);
-        return baNew.getType();
+        return baNew.getAppointmentStatus();
     }
 
 
     @Override
     public String cancelAppointment(Long id){
         Appointment op = repository.getById(id);
-        String existingType = op.getType();
+        String existingType = op.getAppointmentStatus();
         String newType= "cancel";
-        op.setType(newType);
+        op.setAppointmentStatus(newType);
 //        Appointment baNew = new Appointment();
 //        baNew.setAppointmentDate(op.getAppointmentDate());
 //        baNew.setId(op.getId());
-//        baNew.setType(newType);
+//        baNew.setppointmentStatus(newType);
 //        baNew.setPlaced(op.getPlaced());
 //        baNew.setDoctorName(op.getDoctorName());
         repository.save(op);
-        return op.getType();
+        return op.getAppointmentStatus();
     }
 
     @Override
     public List<Appointment> serchCanceledAppointment() {
 
-        List<Appointment> list=repository.findAllByType("cancel");
+        List<Appointment> list=repository.findAllByAppointmentStatus("cancel");
         return list;
     }
 

@@ -10,8 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @RequestMapping("/appointment")
@@ -22,16 +20,29 @@ public class AppointmentController {
     private AppointmentService service;
 
     @PostMapping("/createAppointment")
-    public ResponseEntity<AppResponse<AppointmentDto>> createAppointment(@RequestBody AppointmentDto dto) {
-
-        var svObj = service.createAppointment(dto);
+    public ResponseEntity<AppResponse<AppointmentDto>> createAppointment( @RequestBody AppointmentDto dto) {
 
         var response = new AppResponse<AppointmentDto>();
-        response.setStatus("success");
-        response.setMessage("Appointment saved successfully");
-        response.setBody(svObj);
+        if (dto!=null && dto.getPlaced()!=null && dto.getDoctorName()!=null&& dto.getAppointmentStatus()!=null&& dto.getDoctorName()!=null&&dto.getAppointmentDate()!=null)
+        {
+            var svObj = service.createAppointment(dto);
 
-        return ResponseEntity.ok(response);
+
+            response.setStatus("success");
+            response.setMessage("Appointment saved successfully");
+            response.setBody(svObj);
+
+            return ResponseEntity.ok(response);
+        }
+        else
+        {
+            response.setMessage("fail");
+            response.setStatus("Pleas fill all info");
+
+            return ResponseEntity.ok(response);
+        }
+
+
     }
 
     @PutMapping("/updateAppoint")

@@ -15,7 +15,7 @@ import java.util.Optional;
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 //    Optional<Appointment> findById(Long id);
 
-    List<Appointment> findAllByType(String s);
+    List<Appointment> findAllByAppointmentStatus(String s);
     List<Appointment> findAllByDoctorName(String s);
 
 }
