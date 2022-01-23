@@ -23,7 +23,8 @@ public class AppointmentController {
     public ResponseEntity<AppResponse<AppointmentDto>> createAppointment( @RequestBody AppointmentDto dto) {
 
         var response = new AppResponse<AppointmentDto>();
-        if (dto!=null && dto.getPlaced()!=null && dto.getDoctorName()!=null&& dto.getAppointmentStatus()!=null&& dto.getDoctorName()!=null&&dto.getAppointmentDate()!=null)
+        if (dto!=null && dto.getPlaced()!=null && dto.getDoctorName()!=null&& dto.getAppointmentStatus()!=null
+                && dto.getDoctorName()!=null&&dto.getAppointmentDate()!=null)
         {
             var svObj = service.createAppointment(dto);
 

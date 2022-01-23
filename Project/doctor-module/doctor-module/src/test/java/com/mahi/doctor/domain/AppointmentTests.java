@@ -3,10 +3,11 @@ package com.mahi.doctor.domain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.Date;
 import java.time.LocalDate;
-
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AppointmentTests {
 
     @DisplayName("Domain : Checking Object Creation")
@@ -28,7 +29,7 @@ public class AppointmentTests {
         Assertions.assertEquals(
                 (LocalDate.of(2021,1,1)),
 
-                abc.getPlaced()
+                abc.getAppointmentDate()
         );
         Assertions.assertEquals("abc", abc.getDoctorName());
         Assertions.assertEquals(10, abc.getId());

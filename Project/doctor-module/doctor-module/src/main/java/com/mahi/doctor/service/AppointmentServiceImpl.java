@@ -53,12 +53,6 @@ public class AppointmentServiceImpl implements AppointmentService {
         String existingType = op.getAppointmentStatus();
         String newType= "cancel";
         op.setAppointmentStatus(newType);
-//        Appointment baNew = new Appointment();
-//        baNew.setAppointmentDate(op.getAppointmentDate());
-//        baNew.setId(op.getId());
-//        baNew.setppointmentStatus(newType);
-//        baNew.setPlaced(op.getPlaced());
-//        baNew.setDoctorName(op.getDoctorName());
         repository.save(op);
         return op.getAppointmentStatus();
     }
