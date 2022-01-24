@@ -1,6 +1,8 @@
 package com.weektwo.casestudy.weektwobankrestapp.service;
 
 import com.weektwo.casestudy.weektwobankrestapp.domain.BankAccount;
+import com.weektwo.casestudy.weektwobankrestapp.exception.AccountNotFoundException;
+import com.weektwo.casestudy.weektwobankrestapp.exception.InActiveAccountException;
 import com.weektwo.casestudy.weektwobankrestapp.exception.InvalidAmountException;
 import com.weektwo.casestudy.weektwobankrestapp.repository.BankRepository;
 import org.slf4j.Logger;
@@ -33,17 +35,48 @@ public class BankServiceImpl implements BankService{
 
     @Override
     public int updateAccountDetails(BankAccount ba) {
+        BankAccount oldData=repository.findById(ba.getAcNum()).orElse(null);
+        oldData.setAcHldNm(oldData.getAcHldNm());
+        oldData.setAcCrDt(oldData.getAcCrDt());
+        oldData.setStatus(oldData.getStatus());
+        oldData.setBalance(oldData.getBalance());
+        repository.save(oldData);
         return 0;
     }
 
     @Override
-    public boolean activateAccount(Long acNum) {
-        return false;
+    public boolean activateAccount(Long acNum)
+    {
+        Optional<BankAccount>op=repository.findById(acNum);
+        BankAccount baOld=op.orElseThrow();
+        boolean existingStatus=baOld.getStatus();
+        Boolean newStatus=Boolean.parseBoolean("true");
+        BankAccount baNew=new BankAccount();
+        baNew.setBalance(baOld.getBalance());
+        baNew.setAcCrDt(baOld.getAcCrDt());
+        baNew.setStatus(newStatus);
+        baNew.setAcHldNm(baOld.getAcHldNm());
+        baNew.setAcNum(baOld.getAcNum());
+        repository.save(baNew);
+        return baNew.getStatus();
     }
 
     @Override
-    public boolean deActivateAccount(Long acNum) {
-        return false;
+    public boolean deActivateAccount(Long acNum)
+    {
+        Optional<BankAccount>op=repository.findById(acNum);
+        BankAccount baOld=op.orElseThrow();
+        boolean existingStatus=baOld.getStatus();
+        Boolean newStatus=Boolean.parseBoolean("false");
+        BankAccount baNew=new BankAccount();
+        baNew.setBalance(baOld.getBalance());
+        baNew.setAcCrDt(baOld.getAcCrDt());
+        baNew.setStatus(newStatus);
+        baNew.setAcHldNm(baOld.getAcHldNm());
+        baNew.setAcNum(baOld.getAcNum());
+        repository.save(baNew);
+        return baNew.getStatus();
+
     }
 
     @Override
@@ -83,12 +116,49 @@ public class BankServiceImpl implements BankService{
     }
 
     @Override
-    public int transferMoney(Long srcAc, Long dstAc, double amt) throws InvalidAmountException {
-        return 0;
+    public int transferMoney(Long srcAc, Long dstAc, double amt) throws InvalidAmountException, InActiveAccountException, AccountNotFoundException {
+        if(amt < 0) throw new InvalidAmountException("Amount should be positive : "+ amt);
+
+        BankAccount sa = repository.findById(srcAc)
+                .orElseThrow(
+                        () -> new AccountNotFoundException("Source Account Not Found : "+ srcAc)
+                );
+
+        if(!Boolean.TRUE.equals(sa.getStatus())) throw new InActiveAccountException("Source Account Not Active Yet");
+
+        BankAccount da = repository.findById(dstAc)
+                .orElseThrow(
+                        () -> new AccountNotFoundException("Destination Account Not "+ dstAc)
+                );
+
+        if(!Boolean.TRUE.equals(da.getStatus())) throw new InActiveAccountException(("Destination Account Not Active Ye"));
+
+        BankAccount uSa = new BankAccount();
+        uSa.setAcNum(srcAc);
+        uSa.setAcHldNm(sa.getAcHldNm());
+        uSa.setAcCrDt(sa.getAcCrDt());
+        uSa.setBalance(sa.getBalance() - amt);
+        uSa.setStatus(sa.getStatus());
+
+        BankAccount uDa = new BankAccount();
+        uDa.setAcNum(dstAc);
+        uDa.setAcHldNm(da.getAcHldNm());
+        uDa.setAcCrDt(da.getAcCrDt());
+        uDa.setBalance(da.getBalance() + amt);
+        uDa.setStatus(da.getStatus());
+
+        repository.save(uSa);
+        repository.save(uDa);
+
+        return 1;
     }
 
+
     @Override
-    public BankAccount findAccountByAcNum(Long acNum) {
+    public BankAccount findAccountByAcNum(Long acNum)
+    {
+      //  Optional<BankAccount> op = repository.findById(acNum);
+
         return null;
     }
 
@@ -98,7 +168,9 @@ public class BankServiceImpl implements BankService{
     }
 
     @Override
-    public List<BankAccount> namesStartsWith(String prefix) {
+    public List<BankAccount> namesStartsWith(String prefix) throws InvalidAmountException {
+        if (prefix.isBlank()&& prefix.isEmpty()&& prefix.length()<50)
+            throw new InvalidAmountException("Name should be character"+prefix);
         return repository.findByAcHldNmStartingWith(prefix);
     }
 }
