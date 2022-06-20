@@ -24,4 +24,10 @@ private Long id;
     private String placed;
     private LocalDate appointmentDate;
     private String doctorName;
+
+
+//    private String type;
+//    private LocalDate placed;
+//    private LocalDate appointment;
+//    private String doctorName;
 }

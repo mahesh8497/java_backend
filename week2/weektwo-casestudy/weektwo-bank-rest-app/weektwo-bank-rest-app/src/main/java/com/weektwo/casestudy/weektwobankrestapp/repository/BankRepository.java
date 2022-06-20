@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BankRepository extends JpaRepository<BankAccount, Long> {
 
@@ -18,4 +19,9 @@ public interface BankRepository extends JpaRepository<BankAccount, Long> {
     List<BankAccount> findByAcHldNmStartingWith(String prefix);
 
     List<BankAccount> findByStatusTrue();
+    @Override
+    List<BankAccount> findAll();
+
+    Optional<BankAccount> findById(Long acNum);
+
 }

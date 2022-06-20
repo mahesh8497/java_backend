@@ -20,14 +20,21 @@ public class Appointment {
     private Long id;
     @NotNull
     @NotBlank
+
     @Column(unique = false, nullable = true)
     private String appointmentStatus;
+
     @Column(unique = false, nullable = true)
     private String placed;
+
     @Column(unique = false, nullable = true)
     private LocalDate appointmentDate;
+
     @Column(unique = false, nullable = false)
     private String doctorName;
+
+
+
 
 
 }

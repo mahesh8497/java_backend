@@ -10,7 +10,8 @@ import java.util.Date;
 public class BankAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long acNum; // ac_numha
+    private Long acNum;
+    private Long acNum2; // test case
     private String acHldNm;
     private Double balance;
     private Boolean status;
@@ -54,5 +55,15 @@ public class BankAccount {
 
     public void setAcCrDt(Date acCrDt) {
         this.acCrDt = acCrDt;
+    }
+
+
+
+    public Long getAcNum2() {
+        return acNum2;
+    }
+
+    public void setAcNum2(Long acNum2) {
+        this.acNum2 = acNum2;
     }
 }

@@ -93,26 +93,33 @@ public class BankServiceImpl implements BankService{
         // just explanation I am using this strategy
         // it can be done in more efficient way
 
-        if(amt <= 0) throw new InvalidAmountException("Amount Should be Non Zero Positive "+amt);
+        if (amt <= 0) throw new InvalidAmountException("Amount Should be Non Zero Positive " + amt);
 
         Optional<BankAccount> op = repository.findById(acNum);
 
         BankAccount baOld = op.orElseThrow();
         double existingBalance = baOld.getBalance();
-        double newBalance = existingBalance + amt;
 
-        BankAccount baNew = new BankAccount();
-        baNew.setBalance(newBalance);
-        baNew.setAcCrDt(baOld.getAcCrDt());
-        baNew.setStatus(baOld.getStatus());
-        baNew.setAcHldNm(baOld.getAcHldNm());
-        baNew.setAcNum(baOld.getAcNum());
+        Boolean existingStatus = baOld.getStatus();
 
-        repository.save(baNew);
+        if (existingStatus != true) {
+            return 0;
+        }
+        else {
+            double newBalance = existingBalance + amt;
 
-//        withdraw(acNum, 10);
+            BankAccount baNew = new BankAccount();
+            baNew.setBalance(newBalance);
+            baNew.setAcCrDt(baOld.getAcCrDt());
+            baNew.setStatus(baOld.getStatus());
+            baNew.setAcHldNm(baOld.getAcHldNm());
+            baNew.setAcNum(baOld.getAcNum());
 
-        return baNew.getBalance();
+            repository.save(baNew);
+
+            return baNew.getBalance();
+
+        }
     }
 
     @Override
@@ -131,7 +138,7 @@ public class BankServiceImpl implements BankService{
                         () -> new AccountNotFoundException("Destination Account Not "+ dstAc)
                 );
 
-        if(!Boolean.TRUE.equals(da.getStatus())) throw new InActiveAccountException(("Destination Account Not Active Ye"));
+        if(!Boolean.TRUE.equals(da.getStatus())) throw new InActiveAccountException(("Destination Account Not Active "));
 
         BankAccount uSa = new BankAccount();
         uSa.setAcNum(srcAc);

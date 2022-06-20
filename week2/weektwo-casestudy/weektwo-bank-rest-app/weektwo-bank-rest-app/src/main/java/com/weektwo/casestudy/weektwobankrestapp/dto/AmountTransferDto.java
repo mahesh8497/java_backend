@@ -1,30 +1,31 @@
 package com.weektwo.casestudy.weektwobankrestapp.dto;
 
 public class AmountTransferDto {private Long srcAc;
-    private Long dstAc;
-    private Double amt;
+        private Long dstAc;
+        private Double amt;
 
-    public Long getSrcAc() {
-        return srcAc;
-    }
 
-    public void setSrcAc(Long srcAc) {
-        this.srcAc = srcAc;
-    }
+        public Long getSrcAc() {
+            return srcAc;
+        }
 
-    public Long getDstAc() {
-        return dstAc;
-    }
+        public void setSrcAc(Long srcAc) {
+            this.srcAc = srcAc;
+        }
 
-    public void setDstAc(Long dstAc) {
-        this.dstAc = dstAc;
-    }
+        public Long getDstAc() {
+            return dstAc;
+        }
 
-    public Double getAmt() {
-        return amt;
-    }
+        public void setDstAc(Long dstAc) {
+            this.dstAc = dstAc;
+        }
 
-    public void setAmt(Double amt) {
-        this.amt = amt;
-    }
+        public Double getAmt() {
+            return amt;
+        }
+
+        public void setAmt(Double amt) {
+            this.amt = amt;
+        }
 }
