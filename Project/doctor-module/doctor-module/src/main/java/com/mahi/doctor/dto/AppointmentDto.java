@@ -20,6 +20,7 @@ private Long id;
 @NotNull
 @NotBlank
 
+
     private String appointmentStatus;
     private String placed;
     private LocalDate appointmentDate;
