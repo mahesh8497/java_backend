@@ -10,5 +10,10 @@ public interface DoctorService {
 
     List<DoctorEntity>viewDoctors();
 
-// DoctorEntity updateDoctor(DoctorEntity doctorEntity, int id);
+
+    String deleteDoctor(Integer id);
+
+
+    DoctorEntity updateDoctor(DoctorEntity doctorEntity, int id) ;
+
 }

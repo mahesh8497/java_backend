@@ -5,20 +5,16 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class DoctorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer doctorid;
-
-    @Column(unique = true, nullable = true)
     private String doctorName;
-
-
     private String specialist;
 }

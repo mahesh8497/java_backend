@@ -29,9 +29,18 @@ public class DoctorController {
     }
 
 
-//    @PutMapping("{id}")
-//    public DoctorEntity updateDoctor(@PathVariable("id") int id,@RequestBody DoctorEntity doctorEntity){
-//        return doctorServiceImpl.updateDoctor(doctorEntity,id);
-//    }
+    @DeleteMapping("/delete/{id}")
+    public String erasePatient(@PathVariable("id") Integer id) {
+        doctorServiceImpl.deleteDoctor(id);
+        return "deleted patient..!";
+
+    }
+
+
+
+    @PutMapping("/{id}")
+    public DoctorEntity updateDoctor(@PathVariable("id") int id,@RequestBody DoctorEntity doctorEntity){
+        return doctorServiceImpl.updateDoctor(doctorEntity,id);
+    }
 
 }

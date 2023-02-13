@@ -25,19 +25,32 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorRepo.findAll();
     }
 
-//    @Override
-//    public DoctorEntity updateDoctor(DoctorEntity doctorEntity,int id) {
-//        DoctorEntity doctor=null;
-//        doctor=doctorRepo.findBydoctortId(id);
-//        if(doctor==null){
-//            return null;
-//        }
-//        else {
-//            doctor.setDoctorid(id);
-//          doctor=this.doctorRepo.save(doctorEntity);
-//        }
-//        return doctor;
-//    }
+    @Override
+    public String deleteDoctor(Integer id) {
+
+        doctorRepo.deleteById(id);
+
+        return "deleted"+id;
+    }
+
+    @Override
+    public DoctorEntity updateDoctor(DoctorEntity doctorEntity, int id) {
+        DoctorEntity d=null;
+        d=doctorRepo.findBydoctorid(id);
+        if(d==null){
+            return null;
+        }
+        else{
+            d.setDoctorid(id);
+            d.setDoctorName(d.getDoctorName());
+            d.setSpecialist(d.getSpecialist());
+           d=  this.doctorRepo.save(doctorEntity);
+        }
+
+        return d;
+    }
+
+
 
 
 }

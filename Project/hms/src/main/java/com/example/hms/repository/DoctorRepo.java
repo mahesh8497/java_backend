@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DoctorRepo extends JpaRepository<DoctorEntity,Integer> {
 
-//    public DoctorEntity findBydoctortId(int id);
+        public DoctorEntity findBydoctorid(int id);
+
 
 }
