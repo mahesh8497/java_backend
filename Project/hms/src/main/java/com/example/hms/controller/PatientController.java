@@ -1,15 +1,11 @@
 package com.example.hms.controller;
 
-import com.example.hms.dao.AppResponse;
-import com.example.hms.dao.AppointmentDto;
-import com.example.hms.dao.PatientDto;
 import com.example.hms.entity.PatientEntity;
 import com.example.hms.exception.InvalidIdException;
 import com.example.hms.service.PatientService;
 import com.example.hms.serviceImple.PatientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

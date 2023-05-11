@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-loadbalance-eureka-master/amazon-server/amazon-server.iml" filepath="$PROJECT_DIR$/spring-cloud-loadbalance-eureka-master/amazon-server/amazon-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-loadbalance-eureka-master/amazon-shopping/amazon-shopping.iml" filepath="$PROJECT_DIR$/spring-cloud-loadbalance-eureka-master/amazon-shopping/amazon-shopping.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-loadbalance-eureka-master/payment-service/payment-service.iml" filepath="$PROJECT_DIR$/spring-cloud-loadbalance-eureka-master/payment-service/payment-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/spring-cloud-loadbalance-eureka-master.iml" filepath="$PROJECT_DIR$/.idea/spring-cloud-loadbalance-eureka-master.iml" />
+    </modules>
+  </component>
+</project>

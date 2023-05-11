@@ -1,5 +1,6 @@
 package com.example.hms.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,4 +18,9 @@ public class DoctorEntity {
     private Integer doctorid;
     private String doctorName;
     private String specialist;
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="fk_addPE")
+    private PatientEntity PE;
 }

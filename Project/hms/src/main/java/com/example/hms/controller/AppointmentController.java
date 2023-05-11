@@ -66,8 +66,7 @@ public class AppointmentController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<AppResponse<String>> deleteAppointmentById(@PathVariable("id") Integer id) {
-        //appointmentService.removeAppointmentById(id);
-        //return "Successfully deleted...!";
+
         try {
             String stat = appointmentService.deleteAppointment(id);
             var response = new AppResponse<String>();
